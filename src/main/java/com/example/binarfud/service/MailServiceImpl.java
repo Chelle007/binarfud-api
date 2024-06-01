@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -28,7 +28,7 @@ public class MailServiceImpl implements MailService {
     @Autowired JavaMailSender javaMailSender;
     @Autowired UserRepository userRepository;
     @Autowired RoleRepository roleRepository;
-    @Autowired BCryptPasswordEncoder passwordEncoder;
+    @Autowired PasswordEncoder passwordEncoder;
     @Autowired ModelMapper modelMapper;
 
     @Override
