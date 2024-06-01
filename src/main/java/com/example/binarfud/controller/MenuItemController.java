@@ -8,6 +8,7 @@ import com.example.binarfud.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +23,7 @@ public class MenuItemController {
     @Autowired RestaurantService restaurantService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> addMenuItem(@RequestBody MenuItemCreateRequestDto menuItemCreateRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -99,6 +101,7 @@ public class MenuItemController {
     }
 
     @PutMapping("/{menu_item_id}")
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> updateMenuItem(@PathVariable("menu_item_id") UUID menuItemId, MenuItemUpdateRequestDto menuItemUpdateRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -112,6 +115,7 @@ public class MenuItemController {
     }
 
     @DeleteMapping("/{menu_item_id}")
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> deleteMenuItem(@PathVariable("menu_item_id") UUID menuItemId) {
         menuItemService.safeDeleteById(menuItemId);
         Map<String, Object> response = new HashMap<>();

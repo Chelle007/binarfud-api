@@ -44,14 +44,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUserPostLogin(String name, String email) {
         Role role = roleRepository.findByName(ERole.ROLE_CUSTOMER);
-        Set<Role> roles = new HashSet<>(Collections.singletonList(role));
 
         User user = getByUsername(email);
         if(user == null){
             user = User.builder()
                     .username(email)
                     .email(email)
-                    .roles(roles)
+                    .role(role)
                     .build();
             userRepository.save(user);
         }
@@ -76,6 +75,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByUsername(String username) {
         Optional<User> userOptional = userRepository.findByUsername(username);
+        return userOptional.orElse(null);
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        Optional<User> userOptional = userRepository.findByEmail(email);
         return userOptional.orElse(null);
     }
 

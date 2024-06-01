@@ -9,6 +9,7 @@ import com.example.binarfud.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class OrderDetailController {
     @Autowired MenuItemService menuItemService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> addOrderDetail(@RequestBody OrderDetailCreateRequestDto orderDetailCreateRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -49,6 +51,7 @@ public class OrderDetailController {
     }
 
     @GetMapping("/menuItem/{menu_item_id}")
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> getOrderDetailsByMenuItem(@PathVariable("menu_item_id") UUID menuItemId) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -75,6 +78,7 @@ public class OrderDetailController {
     }
 
     @PutMapping("/{order_detail_id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> updateOrderDetail(@PathVariable("order_detail_id") UUID orderDetailId, OrderDetailUpdateRequestDto orderDetailUpdateRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -88,6 +92,7 @@ public class OrderDetailController {
     }
 
     @DeleteMapping("/{order_detail_id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> deleteOrderDetail(@PathVariable("order_detail_id") UUID orderDetailId) {
         orderDetailService.safeDeleteById(orderDetailId);
         Map<String, Object> response = new HashMap<>();

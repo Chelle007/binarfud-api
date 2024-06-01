@@ -17,6 +17,7 @@ public interface UserService {
     User getById(UUID id);
     UserDto getDtoById(UUID id);
     User getByUsername(String username);
+    User getByEmail(String email);
     UserDto getByUsernameAndPassword(String username, String password);
     List<UserDto> getList();
 

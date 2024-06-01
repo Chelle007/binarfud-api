@@ -10,6 +10,7 @@ import com.example.binarfud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -51,18 +52,6 @@ public class UserController {
         return ResponseEntity.badRequest().body("Invalid OTP or OTP expired.");
     }
 
-    @PostMapping
-    public ResponseEntity<Map<String, Object>> addUser(@RequestBody UserCreateRequestDto userCreateRequestDto) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", "success");
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("user", userService.create(userCreateRequestDto));
-        response.put("data", data);
-
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
-
     @GetMapping
     public ResponseEntity<Map<String, Object>> getAllUsers() {
         Map<String, Object> response = new HashMap<>();
@@ -83,19 +72,6 @@ public class UserController {
 
         Map<String, Object> data = new HashMap<>();
         UserDto userDto = userService.getDtoById(userId);
-        data.put("user", userDto);
-        response.put("data", data);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @GetMapping("/login")
-    public ResponseEntity<Map<String, Object>> getUserByUsernameAndPassword(@RequestParam String username, @RequestParam String password) {
-        Map<String, Object> response = new HashMap<>();
-        response.put("status", "success");
-
-        Map<String, Object> data = new HashMap<>();
-        UserDto userDto = userService.getByUsernameAndPassword(username, password);
         data.put("user", userDto);
         response.put("data", data);
 

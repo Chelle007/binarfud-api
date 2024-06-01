@@ -5,7 +5,6 @@ target/
 !**/src/test/**/target/
 logs
 secrets.properties
-setenv.bat
 
 ### STS ###
 .apt_generated

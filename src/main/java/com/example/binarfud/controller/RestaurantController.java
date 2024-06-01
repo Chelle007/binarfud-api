@@ -6,6 +6,7 @@ import com.example.binarfud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class RestaurantController {
     @Autowired UserService userService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> addRestaurant(@RequestBody RestaurantCreateRequestDto restaurantCreateRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -85,6 +87,7 @@ public class RestaurantController {
     }
 
     @GetMapping("/{restaurant_id}/report")
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> generateRestaurantReport(@PathVariable("restaurant_id") UUID restaurantId, @RequestParam(required = false) LocalDateTime startTime, @RequestParam(required = false) LocalDateTime endTime) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -98,6 +101,7 @@ public class RestaurantController {
     }
 
     @PutMapping("/{restaurant_id}")
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> updateRestaurant(@PathVariable("restaurant_id") UUID restaurantId, RestaurantUpdateRequestDto restaurantUpdateRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -111,6 +115,7 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/{restaurant_id}")
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> deleteRestaurant(@PathVariable("restaurant_id") UUID restaurantId) {
         restaurantService.safeDeleteById(restaurantId);
         Map<String, Object> response = new HashMap<>();

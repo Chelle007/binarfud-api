@@ -34,17 +34,15 @@ public class User {
 
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
+
     @Column(columnDefinition = "boolean default false")
     private boolean active = Boolean.FALSE;
 
     private String otp;
     private LocalDateTime otpExpirationTime;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

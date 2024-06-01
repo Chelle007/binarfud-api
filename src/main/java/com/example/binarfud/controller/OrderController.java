@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class OrderController {
     @Autowired JasperService jasperService;
 
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> addOrder(@RequestBody OrderCreateRequestDto orderCreateRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -53,6 +55,7 @@ public class OrderController {
     }
 
     @GetMapping("/history/user/{user_id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> getCompletedOrdersByUser(@PathVariable("user_id") UUID userId) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -66,6 +69,7 @@ public class OrderController {
     }
 
     @GetMapping("/history/restaurant/{restaurant_id}")
+    @PreAuthorize("hasRole('ROLE_SELLER')")
     public ResponseEntity<Map<String, Object>> getCompletedOrdersByRestaurant(@PathVariable("restaurant_id") UUID restaurantId) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -92,6 +96,7 @@ public class OrderController {
     }
 
     @GetMapping("/{order_id}/receipt")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> getOrderReceipt(@PathVariable("order_id") UUID orderId) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -105,6 +110,7 @@ public class OrderController {
     }
 
     @GetMapping("/{order_id}/generate/{format}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Resource> generateOrderReceipt(@PathVariable("order_id") UUID orderId, @PathVariable("format") String format) throws JRException {
         byte[] reportContent = jasperService.getOrderReport(receiptService.getOrderReceiptDto(orderId), format);
 
@@ -120,6 +126,7 @@ public class OrderController {
     }
 
     @PutMapping("/{order_id}/complete_order")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> completeOrder(@PathVariable("order_id") UUID orderId, OrderCompleteRequestDto orderCompleteRequestDto) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
@@ -133,6 +140,7 @@ public class OrderController {
     }
 
     @DeleteMapping("/{order_id}")
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     public ResponseEntity<Map<String, Object>> deleteOrder(@PathVariable("order_id") UUID orderId) {
         orderService.safeDeleteById(orderId);
         Map<String, Object> response = new HashMap<>();
