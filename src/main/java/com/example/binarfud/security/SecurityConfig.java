@@ -117,7 +117,7 @@ public class SecurityConfig implements WebMvcConfigurer {
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("https://google.com", "https://accounts.google.com/"));
+        configuration.setAllowedOrigins(Arrays.asList("https://google.com", "https://accounts.google.com/", "https://binarfud-api-production.up.railway.app/", "http://localhost:8080"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization"));
         configuration.setAllowCredentials(true);
