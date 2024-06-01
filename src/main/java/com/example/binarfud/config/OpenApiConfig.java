@@ -24,7 +24,7 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Binarfud")
-                        .version("1.0")
+                        .version("1.1")
                         .description("API for Binarfud, a project from Synrgy bootcamp course"));
     }
 }
