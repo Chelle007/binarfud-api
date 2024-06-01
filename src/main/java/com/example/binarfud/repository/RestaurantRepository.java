@@ -10,7 +10,5 @@ import java.util.UUID;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, UUID> {
-    List<Restaurant> findByOpen(boolean b);
     List<Restaurant> findByOwner(User user);
-    boolean existsByName(String name);
 }

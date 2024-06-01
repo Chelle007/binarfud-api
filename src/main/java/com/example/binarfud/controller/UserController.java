@@ -1,16 +1,13 @@
 package com.example.binarfud.controller;
 
-import com.example.binarfud.model.dto.user.UserCreateRequestDto;
 import com.example.binarfud.model.dto.user.UserDto;
 import com.example.binarfud.model.dto.user.UserRegisterRequestDto;
 import com.example.binarfud.model.dto.user.UserUpdateRequestDto;
-import com.example.binarfud.model.entity.account.User;
 import com.example.binarfud.service.MailService;
 import com.example.binarfud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;

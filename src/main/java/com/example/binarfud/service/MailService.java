@@ -1,7 +1,6 @@
 package com.example.binarfud.service;
 
 import com.example.binarfud.model.dto.user.UserRegisterRequestDto;
-import com.example.binarfud.model.entity.account.User;
 import org.springframework.stereotype.Service;
 
 @Service

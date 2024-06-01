@@ -17,7 +17,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -44,7 +43,6 @@ public class SecurityConfig implements WebMvcConfigurer {
     public SecurityFilterChain filterChain (HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
                         auth
                                 .requestMatchers("/home/hello").permitAll()
@@ -62,7 +60,6 @@ public class SecurityConfig implements WebMvcConfigurer {
                                         .oidcUserService(this.oidcUserService())
                                 )
                                 .successHandler((request, response, authentication) -> {
-                                    //create user jika belum ada di db
                                     //GOOGLE
                                     DefaultOidcUser oidcUser = (DefaultOidcUser) authentication.getPrincipal();
                                     userService.createUserPostLogin(oidcUser.getAttribute("email"),

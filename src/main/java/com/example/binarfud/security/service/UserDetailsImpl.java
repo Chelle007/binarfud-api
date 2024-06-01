@@ -8,9 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Setter
 @Getter

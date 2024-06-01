@@ -7,7 +7,6 @@ import com.example.binarfud.model.entity.account.User;
 import com.example.binarfud.security.jwt.JwtUtils;
 import com.example.binarfud.security.service.UserDetailsImpl;
 import com.example.binarfud.service.MailService;
-import com.example.binarfud.service.MailServiceImpl;
 import com.example.binarfud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

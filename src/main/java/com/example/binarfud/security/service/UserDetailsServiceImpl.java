@@ -2,7 +2,6 @@ package com.example.binarfud.security.service;
 
 import com.example.binarfud.model.entity.account.User;
 import com.example.binarfud.repository.UserRepository;
-import com.example.binarfud.security.service.UserDetailsImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
