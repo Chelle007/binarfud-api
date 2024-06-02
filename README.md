@@ -56,6 +56,6 @@ You can access the deployed Binarfud API on Railway at the following URL: `https
 The API documentation remains the same as during local development. You can explore and interact with the endpoints using Swagger UI, which is accessible at the deployed URL: `https://binarfud-api-production.up.railway.app/login/swagger-ui/index.html`
 
 ### Additional Notes
-To access Swagger UI, you must log in first using the following credentials:
-Username: seller
-Password: 12345678
+- **Accessing Swagger UI**: To access Swagger UI, you must log in first using the following credentials:
+  - **Username**: seller
+  - **Password**: 12345678
