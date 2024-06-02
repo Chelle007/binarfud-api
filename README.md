@@ -46,3 +46,16 @@ Swagger UI is an interactive tool that allows you to explore and test the API en
 
 #### Accessing Swagger UI
 You can access the Swagger UI for Binarfud API at the following URL: `http://localhost:8080/swagger-ui/index.html`
+
+## Deployment on Railway
+
+### Accessing the Deployed API
+You can access the deployed Binarfud API on Railway at the following URL: `https://binarfud-api-production.up.railway.app`
+
+### API Documentation
+The API documentation remains the same as during local development. You can explore and interact with the endpoints using Swagger UI, which is accessible at the deployed URL: `https://binarfud-api-production.up.railway.app/login/swagger-ui/index.html`
+
+### Additional Notes
+To access Swagger UI, you must log in first using the following credentials:
+Username: seller
+Password: 12345678
